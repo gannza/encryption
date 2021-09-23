@@ -9,10 +9,13 @@
             "email": "respinho2014@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "autoload": {
         "psr-4": {"Plectrum\\Encryption\\": "src/"}
     },
-    "require": {}
+    "require": {},
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
