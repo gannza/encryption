@@ -1,17 +1,17 @@
 {
-    "name": "vitalis/hello-composer",
-    "description": "A simple hello world composer package",
+    "name": "plectrum/encryption",
+    "description": "Encryption composer package",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "Ogbonna Vitalis",
-            "email": "agavitalisogbonna@gmail.com"
+            "name": "Ganza J. Respice",
+            "email": "respinho2014@gmail.com"
         }
     ],
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {"vitalis\\HelloWorld\\": "src/"}
+        "psr-4": {"Plectrum\\Encryption\\": "src/"}
     },
     "require": {}
 }
