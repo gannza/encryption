@@ -1,7 +1,7 @@
 {
     "name": "plectrum/encryption",
     "description": "Encryption composer package",
-    "type": "library",
+    "type": "package",
     "license": "MIT",
     "version": "1.0.0",
     "authors": [
