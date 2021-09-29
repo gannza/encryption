@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": ">=^7.4.0"
+        "php": ">=^7.3.0"
     },
     "autoload": {
         "psr-4": {"Plectrum\\Encryption\\": "src/"}
