@@ -52,7 +52,7 @@
                     use Plectrum\Encryption\EncryptionService;
 
                     $encryptionSerivce = new EncryptionService();
-                    
+
                     $crypherData="bmVGeVZGR3hVUHJNaVpqNmQ0K2lrZVFwZ09ESlZtdmFucnFQem84aFFVbkpkbFl0NEdQczRwTHhOS3FWUFh2aUVxQ0dPekU1SW0wMVdaeXhrbk8zS3c9PThxdjZrMw==";
 
                     $data= $encryptionSerivce->decrypt($crypherData,'secret_key');
@@ -63,7 +63,9 @@
                     ?>
             ```
 
+
         ## Code for Decrpt any string
+        
 
                 ```<?php
 
