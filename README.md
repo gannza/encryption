@@ -10,8 +10,7 @@
 
        ## Code for Encrypt Array of data
 
-            ```
-            <?php
+            ```<?php
 
                 require __DIR__ . '/vendor/autoload.php';
 
@@ -27,8 +26,7 @@
 
        ## Code for Encrypt any string
 
-            ``` 
-            <?php
+            ```<?php
 
                 require __DIR__ . '/vendor/autoload.php';
 
@@ -47,8 +45,7 @@
 
         ## Code for Decrpt Array of data
 
-            ```
-                <?php
+            ```<?php
 
                     require __DIR__ . '/vendor/autoload.php';
 
@@ -66,8 +63,7 @@
 
         ## Code for Decrpt any string
 
-                ```
-                <?php
+                ```<?php
 
                     require __DIR__ . '/vendor/autoload.php';
 
