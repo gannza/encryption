@@ -1,0 +1,24 @@
+{
+    "name": "plectrum/encryption",
+    "description": "Encryption composer package",
+    "type": "library",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Ganza J. Respice",
+            "email": "respinho2014@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0"
+    },
+    "autoload": {
+        "psr-4": {"Plectrum\\Encryption\\": "src/"}
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
