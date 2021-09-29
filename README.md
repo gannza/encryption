@@ -9,7 +9,7 @@
   1. For Encrypt
      # Code for Encrypt Array of data
 
-       `` 
+    ```
        <?php
 
         require __DIR__ . '/vendor/autoload.php';
@@ -22,11 +22,11 @@
             $crypherData= $encryptionSerivce->encrypt($payload,'secret_key');
             echo $crypherData;
         ?>
-     ``
+    ```
 
       # Code for Encrypt any string
 
-       `` 
+       ``` 
        <?php
 
         require __DIR__ . '/vendor/autoload.php';
@@ -40,12 +40,12 @@
             $crypherData= $encryptionSerivce->encrypt($text,'secret_key');
 
         ?>
-     ``
+     ```
 
      2. For Decrypt
        # Code for Decrpt Array of data
 
-        ``
+       ```
          <?php
 
             require __DIR__ . '/vendor/autoload.php';
@@ -60,11 +60,11 @@
             echo json_encode($payload); // you will get an array
 
             ?>
-        ``
+       ```
 
         # Code for Decrpt any string
 
-        ``
+        ```
          <?php
 
             require __DIR__ . '/vendor/autoload.php';
@@ -78,4 +78,4 @@
             echo $plain_text; // you will get text
 
             ?>
-        ``
+       ```
