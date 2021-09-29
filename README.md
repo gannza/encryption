@@ -7,75 +7,77 @@
 # Using Package
 
   1. For Encrypt
-     # Code for Encrypt Array of data
+  
+       ## Code for Encrypt Array of data
 
-    ```
-       <?php
+            ```
+            <?php
 
-        require __DIR__ . '/vendor/autoload.php';
+                require __DIR__ . '/vendor/autoload.php';
 
-        use Plectrum\Encryption\EncryptionService;
+                use Plectrum\Encryption\EncryptionService;
 
-        $encryptionSerivce = new EncryptionService();
+                $encryptionSerivce = new EncryptionService();
 
-            $payload = http_build_query(array('id'=>1));
-            $crypherData= $encryptionSerivce->encrypt($payload,'secret_key');
-            echo $crypherData;
-        ?>
-    ```
+                    $payload = http_build_query(array('id'=>1));
+                    $crypherData= $encryptionSerivce->encrypt($payload,'secret_key');
+                    echo $crypherData;
+                ?>
+            ```
 
-      # Code for Encrypt any string
+       ## Code for Encrypt any string
 
-       ``` 
-       <?php
+            ``` 
+            <?php
 
-        require __DIR__ . '/vendor/autoload.php';
+                require __DIR__ . '/vendor/autoload.php';
 
-        use Plectrum\Encryption\EncryptionService;
+                use Plectrum\Encryption\EncryptionService;
 
-        $encryptionSerivce = new EncryptionService();
-       
-        // Encrypt array of data
-            $text = 'Hello world';
-            $crypherData= $encryptionSerivce->encrypt($text,'secret_key');
+                $encryptionSerivce = new EncryptionService();
+            
+                // Encrypt array of data
+                    $text = 'Hello world';
+                    $crypherData= $encryptionSerivce->encrypt($text,'secret_key');
 
-        ?>
-     ```
+                ?>
+            ```
 
      2. For Decrypt
-       # Code for Decrpt Array of data
 
-       ```
-         <?php
+        ## Code for Decrpt Array of data
 
-            require __DIR__ . '/vendor/autoload.php';
+            ```
+                <?php
 
-            use Plectrum\Encryption\EncryptionService;
+                    require __DIR__ . '/vendor/autoload.php';
 
-            $encryptionSerivce = new EncryptionService();
+                    use Plectrum\Encryption\EncryptionService;
 
-            $data= $encryptionSerivce->decrypt($response,'secret_key');
-            parse_str($data, $payload);
+                    $encryptionSerivce = new EncryptionService();
 
-            echo json_encode($payload); // you will get an array
+                    $data= $encryptionSerivce->decrypt($response,'secret_key');
+                    parse_str($data, $payload);
 
-            ?>
-       ```
+                    echo json_encode($payload); // you will get an array
 
-        # Code for Decrpt any string
+                    ?>
+            ```
 
-        ```
-         <?php
+        ## Code for Decrpt any string
 
-            require __DIR__ . '/vendor/autoload.php';
+                ```
+                <?php
 
-            use Plectrum\Encryption\EncryptionService;
+                    require __DIR__ . '/vendor/autoload.php';
 
-            $encryptionSerivce = new EncryptionService();
+                    use Plectrum\Encryption\EncryptionService;
 
-            $plain_text= $encryptionSerivce->decrypt($response,'secret_key');
-           
-            echo $plain_text; // you will get text
+                    $encryptionSerivce = new EncryptionService();
 
-            ?>
-       ```
+                    $plain_text= $encryptionSerivce->decrypt($response,'secret_key');
+                
+                    echo $plain_text; // you will get text
+
+                    ?>
+            ```
