@@ -6,7 +6,7 @@
 
 # Using Package
 
-  1. For Encrypt
+  1. # For Encrypt
 
        ## Code for Encrypt Array of data
 
@@ -43,7 +43,7 @@
                 ?>
             ```
 
-  2. For Decrypt
+  2. # For Decrypt
 
         ## Code for Decrpt Array of data
 
