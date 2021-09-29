@@ -37,7 +37,7 @@
                 // Encrypt array of data
                     $text = 'Hello world';
                     $crypherData= $encryptionSerivce->encrypt($text,'secret_key');
-
+                    echo  $crypherData;
                 ?>
             ```
 
@@ -52,11 +52,13 @@
                     use Plectrum\Encryption\EncryptionService;
 
                     $encryptionSerivce = new EncryptionService();
+                    
+                    $crypherData="bmVGeVZGR3hVUHJNaVpqNmQ0K2lrZVFwZ09ESlZtdmFucnFQem84aFFVbkpkbFl0NEdQczRwTHhOS3FWUFh2aUVxQ0dPekU1SW0wMVdaeXhrbk8zS3c9PThxdjZrMw==";
 
-                    $data= $encryptionSerivce->decrypt($response,'secret_key');
+                    $data= $encryptionSerivce->decrypt($crypherData,'secret_key');
                     parse_str($data, $payload);
 
-                    echo json_encode($payload); // you will get an array
+                    print_r($payload); ; // you will get an array
 
                     ?>
             ```
@@ -71,7 +73,9 @@
 
                     $encryptionSerivce = new EncryptionService();
 
-                    $plain_text= $encryptionSerivce->decrypt($response,'secret_key');
+                    $crypherData="ZUIzK0o0dTU4Y1poeTRxUU0yNGtlbFFXZEFrVnJidHNtdHF0Uk9OcmdReFlHZ0VOeXpwaHN2MktVejUva2RZL0V2WDNVOVphb2xSN1hvRU9tRkVxZWd1c3NzZ284cUQzc1hqUnNBMzhoK009aWZ2aWp3";
+
+                    $plain_text= $encryptionSerivce->decrypt($crypherData,'secret_key');
                 
                     echo $plain_text; // you will get text
 
