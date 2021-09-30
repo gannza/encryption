@@ -40,6 +40,8 @@ class EncryptionService
             return base64_encode($ciphertext . $checksum);
         }
     
+
+        
         function decrypt($ciphertext, $secret_key, $cipher = "AES-128-CBC",$short=false)
         {
             if(!$result = $this->verifyChecksum($ciphertext)){
