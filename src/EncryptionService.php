@@ -24,8 +24,7 @@ class EncryptionService
             $payload = json_encode($plaintext);
     
             $crc_len = ($short==false) ? 6 : 2; 
-            $checksum = $this->checksum($payload, $crc_len);
-            $payload = $payload . $checksum; // add the checksum to the end of the string so we can verify decryption
+          
             $key = openssl_digest($secret_key, 'SHA256', TRUE);
     
             $ivlen = openssl_cipher_iv_length($cipher);
@@ -35,6 +34,7 @@ class EncryptionService
           
             $hmac = hash_hmac('sha256', $ciphertext_raw, $key, true);
             $ciphertext= base64_encode($iv . $hmac . $ciphertext_raw);
+
             $checksum = $this->checksum($ciphertext, $crc_len);
     
             return base64_encode($ciphertext . $checksum);
@@ -59,13 +59,8 @@ class EncryptionService
     
             $calcmac = hash_hmac('sha256', $ciphertext_raw, $key, true);
             if (hash_equals($hmac, $calcmac)){
-                $result = trim($original_plaintext); 
-                $crc_len = ($short==false) ? 6 : 2; 
-                $checksum = substr($result,strlen($result)-$crc_len); // split the decrypted string and the checksum
-                $result = substr($result,0,strlen($result)-$crc_len);
-        
-                    return ($checksum == $this->checksum($result, $crc_len)) ? json_decode($result) : false; 
-            }else{
+                    return json_decode($original_plaintext);
+              }else{
                 return false;
             }
     
