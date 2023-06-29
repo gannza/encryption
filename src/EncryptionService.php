@@ -4,97 +4,76 @@ namespace Plectrum\Encryption;
 
 class EncryptionService
 {
-    function convBase($numberInput, $fromBaseInput, $toBaseInput)
+
+    function encrypt($data, $secretKey)
     {
-        if ($fromBaseInput==$toBaseInput) return $numberInput;
-        $fromBase = str_split($fromBaseInput,1);
-        $toBase = str_split($toBaseInput,1);
-        $number = str_split($numberInput,1);
-        $fromLen=strlen($fromBaseInput);
-        $toLen=strlen($toBaseInput);
-        $numberLen=strlen($numberInput);
-        $retval='';
-        if ($toBaseInput == '0123456789')
-        {
-            $retval=0;
-            for ($i = 1;$i <= $numberLen; $i++)
-                $retval = bcadd($retval, bcmul(array_search($number[$i-1], $fromBase),bcpow($fromLen,$numberLen-$i)));
-            return $retval;
-        }
-        if ($fromBaseInput != '0123456789')
-            $base10=$this->convBase($numberInput, $fromBaseInput, '0123456789');
-        else
-            $base10 = $numberInput;
-        if ($base10<strlen($toBaseInput))
-            return $toBase[$base10];
-        while($base10 != '0')
-        {
-            $retval = $toBase[bcmod($base10,$toLen)].$retval;
-            $base10 = bcdiv($base10,$toLen,0);
-        }
-        return $retval;
-    }
-    function checksum($str, $crc_len=2) {
-        $result = $this->convBase(sha1($str),10,36);
-        return substr($result,0,$crc_len);
-    }
-    
-    function verifyChecksum($ciphertext,$short=false){
-        $result = trim(base64_decode($ciphertext)); 
-        $crc_len = ($short==false) ? 6 : 2; 
-        $checksum = substr($result,strlen($result)-$crc_len); // split the decrypted string and the checksum
-        $result = substr($result,0,strlen($result)-$crc_len);
-        return ($checksum == $this->checksum($result, $crc_len)) ? $result:false;
-    }
-    
-    function encrypt($plaintext, $secret_key, $cipher = "AES-128-CBC",$short=false)
-        {
-    
-            if (!$plaintext) return false;
-            $payload = json_encode($plaintext);
-    
-            $crc_len = ($short==false) ? 6 : 2; 
-          
-            $key = openssl_digest($secret_key, 'SHA256', TRUE);
-    
-            $ivlen = openssl_cipher_iv_length($cipher);
-            $iv = openssl_random_pseudo_bytes($ivlen);
-            // binary cipher
-            $ciphertext_raw = openssl_encrypt($payload, $cipher, $key, OPENSSL_RAW_DATA, $iv);
-          
-            $hmac = hash_hmac('sha256', $ciphertext_raw, $key, true);
-            $ciphertext= base64_encode($iv . $hmac . $ciphertext_raw);
+        // The data to encrypt
 
-            $checksum = $this->checksum($ciphertext, $crc_len);
-    
-            return base64_encode($ciphertext . $checksum);
-        }
-    
+        $data = isset($data) ? $data  : '';
+        $secretKey = isset($secretKey) ? $secretKey : '';
 
-        
-        function decrypt($ciphertext, $secret_key, $cipher = "AES-128-CBC",$short=false)
-        {
-            if(!$result = $this->verifyChecksum($ciphertext)){
-                return false;
-            }
-    
-            $c = base64_decode($result);
-    
-            $key = openssl_digest($secret_key, 'SHA256', TRUE);
-    
-            $ivlen = openssl_cipher_iv_length($cipher);
-    
-            $iv = substr($c, 0, $ivlen);
-            $hmac = substr($c, $ivlen, $sha2len = 32);
-            $ciphertext_raw = substr($c, $ivlen + $sha2len);
-            $original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, OPENSSL_RAW_DATA, $iv);
-    
-            $calcmac = hash_hmac('sha256', $ciphertext_raw, $key, true);
-            if (hash_equals($hmac, $calcmac)){
-                    return json_decode($original_plaintext);
-              }else{
-                return false;
-            }
-                
+        // Check if the required input variables are provided
+        if (empty($data) || empty($secretKey)) {
+            return ['message' => 'Error: Missing required input variables.(make sure you passed data and secret key)', 'code' => 400];
         }
+
+        // Convert the array to a JSON string
+        $jsonData = json_encode($data);
+
+        // Generate an initialization vector (IV)
+        $iv = openssl_random_pseudo_bytes(openssl_cipher_iv_length('aes-256-cbc'));
+
+        // Encrypt the JSON data using AES-256-CBC cipher
+        $encryptedData = openssl_encrypt($jsonData, 'aes-256-cbc', $secretKey, OPENSSL_RAW_DATA, $iv);
+
+        // Combine the IV and encrypted data
+        $encryptedArray = base64_encode($iv . $encryptedData);
+
+        // Display the encrypted data
+        return $encryptedArray;
+    }
+
+
+
+    function decrypt($encryptedArray, $secretKey)
+    {
+        // The encrypted data
+        $encryptedArray = isset($encryptedArray) ? $encryptedArray  : '';
+        $secretKey = isset($secretKey) ? $secretKey : '';
+
+        // Check if the required input variables are provided
+        if (empty($encryptedArray) || empty($secretKey)) {
+            return ['message' => 'Error: Missing required input variables.(make sure you passed encrypted data and secret key)', 'code' => 400];
+        }
+
+        // Decode the base64-encoded encrypted data
+        $encryptedData = base64_decode($encryptedArray);
+
+        // Get the IV from the encrypted data (first 16 bytes)
+        $iv = substr($encryptedData, 0, 16);
+
+        // Get the encrypted data (remaining bytes)
+        $encryptedData = substr($encryptedData, 16);
+
+        // Decrypt the data using AES-256-CBC cipher
+        $decryptedData = openssl_decrypt($encryptedData, 'aes-256-cbc', $secretKey, OPENSSL_RAW_DATA, $iv);
+
+        // Check if decryption was successful
+        if ($decryptedData === false) {
+            return ['message' => 'Error: Decryption failed.', 'code' => 400];
+        }
+
+        // Convert the JSON string back to an array
+        $decryptedArray = json_decode($decryptedData, true);
+
+        // Check if JSON decoding was successful
+        if ($decryptedArray === null) {
+            return ['message' => 'Error: Invalid decrypted data.', 'code' => 400];
+        }
+
+        // Display the decrypted array
+
+        return $decryptedArray; //json_decode($payload);  
+
+    }
 }
