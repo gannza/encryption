@@ -8,7 +8,7 @@
 
   1. # For Encrypt
 
-       ## Code for Encrypt Array of data
+       ## Code for Encrypt of data
 
             ```<?php
 
@@ -18,7 +18,7 @@
 
                 $encryptionSerivce = new EncryptionService();
 
-                    $payload = http_build_query(array('id'=>1));
+                    $payload = array('id'=>1);
                     $crypherData= $encryptionSerivce->encrypt($payload,'secret_key');
                     echo $crypherData;
                 ?>
@@ -53,12 +53,11 @@
 
                     $encryptionSerivce = new EncryptionService();
 
-                    $crypherData="bmVGeVZGR3hVUHJNaVpqNmQ0K2lrZVFwZ09ESlZtdmFucnFQem84aFFVbkpkbFl0NEdQczRwTHhOS3FWUFh2aUVxQ0dPekU1SW0wMVdaeXhrbk8zS3c9PThxdjZrMw==";
+                    $crypherData="1ptzxI/JqAHC8yITNX6/dq3WJ9fP/ESTt4O9cx8v1rBIClgBChqbn9Ed25LD7C1OukkqlIRz1lZOkNH9BNGfp1bqXKSPwCyxjaEaWWIHCljEQ8ZsBPgRjEJj/LBiAF6T";
 
                     $data= $encryptionSerivce->decrypt($crypherData,'secret_key');
-                    parse_str($data, $payload);
-
-                    print_r($payload); ; // you will get an array
+                   
+                    print_r($payload); // you will get an array
 
                     ?>
             ```
