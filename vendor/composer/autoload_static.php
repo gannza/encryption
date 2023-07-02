@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit1d31e8bfc79e5b75b17d4251a724872e
+class ComposerStaticInit78f55648e65533454fae63b5b38394c1
 {
     public static $prefixLengthsPsr4 = array (
         'P' => 
@@ -16,7 +16,7 @@ class ComposerStaticInit1d31e8bfc79e5b75b17d4251a724872e
     public static $prefixDirsPsr4 = array (
         'Plectrum\\Encryption\\' => 
         array (
-            0 => __DIR__ . '/..' . '/plectrum/encryption/src',
+            0 => __DIR__ . '/../..' . '/src',
         ),
     );
 
@@ -27,9 +27,9 @@ class ComposerStaticInit1d31e8bfc79e5b75b17d4251a724872e
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit1d31e8bfc79e5b75b17d4251a724872e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit1d31e8bfc79e5b75b17d4251a724872e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit1d31e8bfc79e5b75b17d4251a724872e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit78f55648e65533454fae63b5b38394c1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit78f55648e65533454fae63b5b38394c1::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit78f55648e65533454fae63b5b38394c1::$classMap;
 
         }, null, ClassLoader::class);
     }

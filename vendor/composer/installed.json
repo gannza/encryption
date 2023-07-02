@@ -1,49 +1,5 @@
 {
-    "packages": [
-        {
-            "name": "plectrum/encryption",
-            "version": "1.0.0",
-            "version_normalized": "1.0.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/gannza/encryption.git",
-                "reference": "29587c2dd0554e24993d6fb502a5adbd35e3b92d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/gannza/encryption/zipball/29587c2dd0554e24993d6fb502a5adbd35e3b92d",
-                "reference": "29587c2dd0554e24993d6fb502a5adbd35e3b92d",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4.0"
-            },
-            "time": "2021-09-29T11:06:10+00:00",
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "Plectrum\\Encryption\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Ganza J. Respice",
-                    "email": "respinho2014@gmail.com"
-                }
-            ],
-            "description": "Encryption composer package",
-            "support": {
-                "issues": "https://github.com/gannza/encryption/issues",
-                "source": "https://github.com/gannza/encryption/tree/1.0.0"
-            },
-            "install-path": "../plectrum/encryption"
-        }
-    ],
+    "packages": [],
     "dev": true,
     "dev-package-names": []
 }
