@@ -1,9 +1,9 @@
 {
     "name": "plectrum/encryption",
-    "description": "Encryption composer package",
+    "description": "Encryption service library",
     "type": "library",
     "license": "MIT",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "authors": [
         {
             "name": "Ganza J. Respice",
@@ -19,6 +19,6 @@
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "beta",
     "prefer-stable": true
 }

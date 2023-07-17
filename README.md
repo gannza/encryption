@@ -1,84 +1,43 @@
-# Encryption
-  Encrypt and Decrypt service
-# Installation
-  1. Go to your project
-  2. run ``composer require plectrum/encryption``
+# Encryption Service Library
 
-# Using Package
+Encryption Service is a PHP library that provides encryption and decryption functionalities using AES-256-CBC cipher. It allows you to securely encrypt sensitive data using a secret key and retrieve the original data through decryption.
 
-  1. # For Encrypt
+Main features:
+- Encryption of data using AES-256-CBC cipher
+- Decryption of encrypted data
+- Input validation to ensure required variables are provided
+- Error handling for decryption failures and invalid data
 
-       ## Code for Encrypt of data
+## Installation
 
-            ```<?php
+Install the library using composer:
 
-                require __DIR__ . '/vendor/autoload.php';
+```sh
+composer require plectrum/encryption
+```
 
-                use Plectrum\Encryption\EncryptionService;
-
-                $encryptionSerivce = new EncryptionService();
-
-                    $payload = array('id'=>1);
-                    $crypherData= $encryptionSerivce->encrypt($payload,'secret_key');
-                    echo $crypherData;
-                ?>
-            ```
-
-       ## Code for Encrypt any string
-
-            ```<?php
-
-                require __DIR__ . '/vendor/autoload.php';
-
-                use Plectrum\Encryption\EncryptionService;
-
-                $encryptionSerivce = new EncryptionService();
-            
-                // Encrypt array of data
-                    $text = 'Hello world';
-                    $crypherData= $encryptionSerivce->encrypt($text,'secret_key');
-                    echo  $crypherData;
-                ?>
-            ```
-
-  2. # For Decrypt
-
-        ## Code for Decrpt Array of data
-
-            ```<?php
-
-                    require __DIR__ . '/vendor/autoload.php';
-
-                    use Plectrum\Encryption\EncryptionService;
-
-                    $encryptionSerivce = new EncryptionService();
-
-                    $crypherData="1ptzxI/JqAHC8yITNX6/dq3WJ9fP/ESTt4O9cx8v1rBIClgBChqbn9Ed25LD7C1OukkqlIRz1lZOkNH9BNGfp1bqXKSPwCyxjaEaWWIHCljEQ8ZsBPgRjEJj/LBiAF6T";
-
-                    $data= $encryptionSerivce->decrypt($crypherData,'secret_key');
-                   
-                    print_r($payload); // you will get an array
-
-                    ?>
-            ```
+## Usage
 
 
-        ## Code for Decrpt any string
-        
+```php
+require __DIR__ . '/vendor/autoload.php';
 
-                ```<?php
+use Plectrum\Encryption\EncryptionService;
 
-                    require __DIR__ . '/vendor/autoload.php';
+$encryption = new EncryptionService();
 
-                    use Plectrum\Encryption\EncryptionService;
+$data = array('id'=>1);
+$secretKey='Your Secret Key';
 
-                    $encryptionSerivce = new EncryptionService();
+//for encryption
 
-                    $crypherData="ZUIzK0o0dTU4Y1poeTRxUU0yNGtlbFFXZEFrVnJidHNtdHF0Uk9OcmdReFlHZ0VOeXpwaHN2MktVejUva2RZL0V2WDNVOVphb2xSN1hvRU9tRkVxZWd1c3NzZ284cUQzc1hqUnNBMzhoK009aWZ2aWp3";
+$encryptedData = $encryption->encrypt($data,$secretKey);
+echo $encryptedData;
 
-                    $plain_text= $encryptionSerivce->decrypt($crypherData,'secret_key');
-                
-                    echo $plain_text; // you will get text
+//for decryption
+$decryptedData = $encryption->decrypt($encryptedData,$secretKey);
+ print_r($decryptedData);
 
-                    ?>
-            ```
+Make sure to replace `data` and `secretKey` with the appropriate values for encryption and decryption.
+
+
